@@ -5,11 +5,14 @@ import { Server } from 'socket.io'
 import cors from 'cors'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import { conexionDB } from './config/database.js'
 
 
+// Inicializacion App 
 const app = express()
 const httpServer = createServer(app)
 
+// Socket
 const io = new Server(httpServer, {
     cors:{
         origin: process.env.CORS_ORIGIN || '',
@@ -18,14 +21,15 @@ const io = new Server(httpServer, {
     }
 })
 
-
+// Middlewares App
 app.use(helmet())
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
+// Conexion MongoDB
+conexionDB()
 
 
 
