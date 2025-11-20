@@ -14,7 +14,7 @@ const httpServer = createServer(app)
 
 // Socket
 const io = new Server(httpServer, {
-    cors:{
+    cors: {
         origin: process.env.CORS_ORIGIN || '',
         methods: ['GET', 'POST'],
         credentials: true
@@ -26,7 +26,7 @@ app.use(helmet())
 app.use(cors())
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 
 // Conexion MongoDB
 conexionDB()
